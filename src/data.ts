@@ -395,9 +395,8 @@ export const BRANCHES_DATA: BranchConfig[] = [
           "Computer Programming",
           "AI, Ethics and Society",
           "Applied Electronics",
-          "Environmental Studies"
         ],
-        [4, 3, 4, 2, 4, 2],
+        [4, 3, 4, 2, 4],
         ["MAL 105", "CSL 110", "CSL 101", "CSL 111", "ECL 103", "HUL 102"]
       ),
       2: createSubjects(
@@ -423,9 +422,10 @@ export const BRANCHES_DATA: BranchConfig[] = [
           "Discrete Maths and Graph Theory",
           "Foundations of Computing",
           "Computer System Organization",
+          "Introduction to Entrepreneurship",
           "AI/ML Workshop - I"
         ],
-        [4, 3, 4, 3, 3, 2],
+        [4, 3, 4, 3, 3, 3, 2],
         ["CSL 202", "CSL 210", "CSL 204", "CSL 216", "CSL 203", "CSP 203"]
       ),
       4: createSubjects(
@@ -437,9 +437,10 @@ export const BRANCHES_DATA: BranchConfig[] = [
           "Software Engineering",
           "Operating Systems",
           "Database Management Systems",
+          "Data Handling and Visualization",
           "AI/ML Workshop – II"
         ],
-        [4, 4, 3, 4, 4, 2],
+        [4, 4, 3, 4, 4, 2, 2],
         ["CSL 422", "CSL 205", "CSL 206", "CSL 207", "CSL 301", "CSP 204"]
       ),
       5: createSubjects(
