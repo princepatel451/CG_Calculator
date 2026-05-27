@@ -98,11 +98,10 @@ export const BRANCHES_DATA: BranchConfig[] = [
           "Open Course - I",
           "Computer Networks",
           "Theory of Computation",
-          "Elective-I",
-          "Human Computer Interaction"
+          "Elective-I"
         ],
-        [4, 3, 4, 4, 3, 3],
-        ["CSL 301", "OC-301", "CSL 302", "CSL 303", "DE-1", "CSL 432"]
+        [4, 3, 4, 4, 3],
+        ["CSL 301", "OC-1", "CSL 302", "CSL 303", "DE-1", "CSL 432"]
       ),
       6: createSubjects(
         "CSE",
@@ -113,9 +112,8 @@ export const BRANCHES_DATA: BranchConfig[] = [
           "Open Course-II",
           "Elective-II",
           "Elective-III",
-          "Mini Project"
         ],
-        [4, 4, 3, 3, 4, 3],
+        [4, 4, 3, 3, 4],
         ["CSL 304", "CSL 305", "OC-302", "DE-2", "DE-3", "CSD 301"]
       ),
       7: createSubjects(
