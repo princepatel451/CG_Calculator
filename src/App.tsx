@@ -28,6 +28,8 @@ import { Subject, GradeScale, CalculationResult } from "./types";
 export default function App() {
   // --- Page navigation ---
   const [activePage, setActivePage] = useState<"calculator" | "grade-calculation" | "how-it-works">("calculator");
+  // mobile nav toggle
+  const [mobileNavOpen, setMobileNavOpen] = useState<boolean>(false);
 
   // --- Core State ---
   const [selectedBranchId, setSelectedBranchId] = useState<string>(BRANCHES_DATA[0].id);
@@ -241,8 +243,8 @@ export default function App() {
           </span>
         </div>
 
-        {/* Centered Navbar Elements */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-2 sm:gap-6 text-xs sm:text-sm font-semibold">
+  {/* Centered Navbar Elements (hidden on mobile) */}
+  <div className="hidden sm:absolute sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:flex sm:items-center sm:gap-2 sm:gap-6 text-xs sm:text-sm font-semibold">
           <button 
             type="button"
             onClick={() => setActivePage("grade-calculation")} 
@@ -268,16 +270,65 @@ export default function App() {
         </div>
 
         <nav className="flex items-center gap-3 relative z-10">
-          {activePage !== "calculator" && (
+          {/* Desktop actions (unchanged) */}
+          <div className="hidden sm:flex items-center gap-3">
+            {activePage !== "calculator" && (
+              <button
+                type="button"
+                onClick={() => setActivePage("calculator")}
+                className="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-lg transition-all cursor-pointer shadow-xs shadow-indigo-100 flex items-center gap-1.5"
+              >
+                <Calculator className="w-3.5 h-3.5" />
+                <span className="hidden xs:inline">Calculator</span>
+              </button>
+            )}
+          </div>
+
+          {/* Mobile hamburger button */}
+          <div className="sm:hidden">
             <button
-              type="button"
-              onClick={() => setActivePage("calculator")}
-              className="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-lg transition-all cursor-pointer shadow-xs shadow-indigo-100 flex items-center gap-1.5"
+              aria-label={mobileNavOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileNavOpen}
+              onClick={() => setMobileNavOpen((s) => !s)}
+              className="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500/30"
             >
-              <Calculator className="w-3.5 h-3.5" />
-              <span className="hidden xs:inline">Calculator</span>
+              <svg className="w-6 h-6 text-slate-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                {mobileNavOpen ? (
+                  <path d="M18 6L6 18M6 6l12 12" />
+                ) : (
+                  <>
+                    <path d="M3 12h18" />
+                    <path d="M3 6h18" />
+                    <path d="M3 18h18" />
+                  </>
+                )}
+              </svg>
             </button>
-          )}
+          </div>
+
+          {/* Mobile nav panel (slide down) */}
+          <div className={`absolute top-full right-2 mt-2 w-48 bg-white rounded-lg shadow-lg overflow-hidden transition-transform origin-top-right ${mobileNavOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0 pointer-events-none'} sm:hidden`}>
+            <div className="flex flex-col py-2">
+              <button
+                className={`text-left px-4 py-2 text-sm ${activePage === 'calculator' ? 'bg-indigo-50 text-indigo-600 font-bold' : 'text-slate-600 hover:bg-slate-100'}`}
+                onClick={() => { setActivePage('calculator'); setMobileNavOpen(false); }}
+              >
+                Calculator
+              </button>
+              <button
+                className={`text-left px-4 py-2 text-sm ${activePage === 'grade-calculation' ? 'bg-indigo-50 text-indigo-600 font-bold' : 'text-slate-600 hover:bg-slate-100'}`}
+                onClick={() => { setActivePage('grade-calculation'); setMobileNavOpen(false); }}
+              >
+                Grade Calculation
+              </button>
+              <button
+                className={`text-left px-4 py-2 text-sm ${activePage === 'how-it-works' ? 'bg-indigo-50 text-indigo-600 font-bold' : 'text-slate-600 hover:bg-slate-100'}`}
+                onClick={() => { setActivePage('how-it-works'); setMobileNavOpen(false); }}
+              >
+                How it Works
+              </button>
+            </div>
+          </div>
         </nav>
       </header>
 
