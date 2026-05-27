@@ -1,0 +1,6 @@
+{
+  "name": "CGPA & SGPA Calculator",
+  "description": "Multi-semester and multi-branch college CGPA/SGPA grade calculator with support for custom credits, grades, and cumulative logic.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
